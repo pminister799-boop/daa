@@ -1,0 +1,27 @@
+#include<stdio.h>
+int a[10][10],x[10],n,m;
+void nextColor(int k){
+ int j;
+ while(1){
+ x[k]=(x[k]+1)%(m+1);
+ if(x[k]==0) return;
+ for(j=1;j<=n;j++)
+ if(a[k][j] && x[k]==x[j]) break;
+ if(j==n+1) return;
+ }
+}
+void color(int k){
+ int i;
+ while(1){
+ nextColor(k);
+ if(x[k]==0) return;
+ if(k==n){
+ for(i=1;i<=n;i++) printf("%d ",x[i]);
+ printf("\n");
+ } else color(k+1);
+ }
+}
+int main(){
+ scanf("%d%d",&n,&m);
+ color(1);
+}

@@ -1,0 +1,23 @@
+#include<stdio.h>
+#define INF 999
+int main(){
+ int n,cost[10][10],visited[10]={0},i,j,min,a,b,total=0,edges=1;
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ for(j=0;j<n;j++) scanf("%d",&cost[i][j]);
+ visited[0]=1;
+ while(edges<n){
+ min=INF;
+ for(i=0;i<n;i++)
+ if(visited[i])
+ for(j=0;j<n;j++)
+ if(!visited[j] && cost[i][j]<min){
+ min=cost[i][j]; a=i; b=j;
+ }
+ printf("%d-%d = %d\n",a,b,min);
+ total+=min;
+ visited[b]=1;
+ edges++;
+}
+ printf("Cost=%d",total);
+}

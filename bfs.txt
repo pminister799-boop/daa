@@ -1,0 +1,19 @@
+#include<stdio.h>
+int main(){
+ int a[10][10],visited[10]={0},queue[10],front=0,rear=0,n,i,j,start;
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ for(j=0;j<n;j++) scanf("%d",&a[i][j]);
+ scanf("%d",&start);
+ queue[rear++]=start;
+ visited[start]=1;
+ while(front<rear){
+ int v=queue[front++];
+ printf("%d ",v);
+ for(i=0;i<n;i++)
+ if(a[v][i] && !visited[i]){
+ queue[rear++]=i;
+ visited[i]=1;
+ }
+ }
+}

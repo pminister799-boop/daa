@@ -1,0 +1,29 @@
+#include<stdio.h>
+int x[10],a[10][10],n;
+int place(int k,int i){
+ int j;
+ if(a[x[k-1]][i]==0) return 0;
+ for(j=1;j<k;j++)
+ if(x[j]==i) return 0;
+ if(k<n || (k==n && a[i][x[1]]==1)) return 1;
+ return 0;
+}
+void ham(int k){
+ int i,j;
+ while(1){
+ for(i=1;i<=n;i++){
+ if(place(k,i)){
+ x[k]=i;
+ if(k==n){
+ for(j=1;j<=n;j++) printf("%d ",x[j]);
+ printf("%d\n",x[1]);
+ } else ham(k+1);
+ }
+ }
+ return;
+ }
+}
+int main(){
+ scanf("%d",&n);
+ ham(2);
+}
